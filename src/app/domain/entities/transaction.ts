@@ -1,15 +1,15 @@
-type TransactionType = "income" | "expense";
+export type TransactionType = "income" | "expense";
 
 /**
  * Represents a transaction.
  * @interface Transaction
  */
-interface Transaction {
-  id: string;
+export interface Transaction {
+  readonly id: string;
   amount: number;
   type: TransactionType;
   description: string;
-  createdAt: Date;
+  readonly createdAt: Date;
 }
 
 /**
@@ -19,7 +19,7 @@ interface Transaction {
  * @param {string} description - The description of the transaction.
  * @returns {Transaction} - A new transaction object.
  */
-function createTransaction(amount: number, type: TransactionType, description: string): Transaction {
+export function createTransaction(amount: number, type: TransactionType, description: string): Transaction {
   return {
     id: crypto.randomUUID(),
     amount: amount,
@@ -27,4 +27,14 @@ function createTransaction(amount: number, type: TransactionType, description: s
     description: description,
     createdAt: new Date()
   }
+}
+
+/**
+ * Checks if a transaction is valid.
+ * A transaction is valid if its amount is greater than 0 and its description is not empty.
+ * @param {Transaction} transaction - The transaction to check.
+ * @returns {boolean} - True if the transaction is valid, false otherwise.
+ */
+export function isTransactionVaild(transaction: Transaction): boolean {
+  return transaction.amount > 0 && transaction.description.trim().length > 0;
 }
