@@ -14,15 +14,15 @@ export interface Transaction {
 
 /**
  * Creates a new transaction object.
- * @param {number} amount - The amount of the transaction.
  * @param {TransactionType} type - The type of the transaction.
+ * @param {number} amount - The amount of the transaction.
  * @param {string} description - The description of the transaction.
  * @returns {Transaction} - A new transaction object.
  */
-export function createTransaction(amount: number, type: TransactionType, description: string): Transaction {
+export function createTransaction(type: TransactionType, amount: number, description: string): Transaction {
   return {
     id: crypto.randomUUID(),
-    amount: amount,
+    amount: Math.abs(amount),
     type: type,
     description: description,
     createdAt: new Date()
@@ -35,6 +35,6 @@ export function createTransaction(amount: number, type: TransactionType, descrip
  * @param {Transaction} transaction - The transaction to check.
  * @returns {boolean} - True if the transaction is valid, false otherwise.
  */
-export function isTransactionVaild(transaction: Transaction): boolean {
+export function isTransactionValid(transaction: Transaction): boolean {
   return transaction.amount > 0 && transaction.description.trim().length > 0;
 }
