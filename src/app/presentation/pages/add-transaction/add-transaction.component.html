@@ -1,0 +1,41 @@
+ <div class="container">
+      <h2>Новая транзакция</h2>
+
+      <div class="type-buttons">
+        <button 
+          [class.active]="type() === 'expense'" 
+          (click)="setType('expense')">
+          Расход
+        </button>
+        <button 
+          [class.active]="type() === 'income'" 
+          (click)="setType('income')">
+          Доход
+        </button>
+      </div>
+
+      <input 
+        type="number" 
+        [(ngModel)]="amount" 
+        placeholder="Сумма" />
+
+      <input 
+        type="text" 
+        [(ngModel)]="description" 
+        placeholder="Описание" />
+
+      <button (click)="save()" [disabled]="!isValid()">
+        Сохранить
+      </button>
+
+      <h3>Последние транзакции</h3>
+      <ul>
+        @for (tx of transactions(); track tx.id) {
+          <li>
+            {{ tx.type === 'expense' ? '-' : '+' }}{{ tx.amount }} ₽ — 
+            {{ tx.description }} ({{ tx.createdAt | date:'short' }})
+            <button (click)="delete(tx.id)">✖</button>
+          </li>
+        }
+      </ul>
+    </div>

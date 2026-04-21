@@ -1,0 +1,39 @@
+.container {
+     max-width: 500px;
+     margin: 0 auto;
+     padding: 20px;
+}
+
+.type-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.active {
+    opacity: 0.7;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
