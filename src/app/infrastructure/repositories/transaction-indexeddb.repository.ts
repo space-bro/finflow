@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { createTransaction, Transaction } from "../../domain/entities/transaction";
+import { ITransactionRepository } from "../../domain/repositories/transaction.repository.interface";
 
 @Injectable({providedIn: "root"})
-export class TransactionIndexedDBRepository {
+export class TransactionIndexedDBRepository implements ITransactionRepository {
 
     private db: IDBDatabase | null = null;
 

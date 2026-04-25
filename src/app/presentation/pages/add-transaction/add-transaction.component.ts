@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { Component, signal } from "@angular/core";
+import { Component, Inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Transaction, TransactionType } from "../../../domain/entities/transaction";
-import { TransactionRepository } from "../../../infrastructure/repositories/transaction.repository";
+import { TransactionIndexedDBRepository } from "../../../infrastructure/repositories/transaction-indexeddb.repository";
 
 @Component({
   templateUrl: './add-transaction.component.html',
@@ -15,7 +15,7 @@ export class AddTransactionComponent {
   description = '';
   transactions = signal<Transaction[]>([]);
 
-  constructor(private repo: TransactionRepository) {
+  constructor(private repo: TransactionIndexedDBRepository){
     this.loadTransactions();
   }
 
@@ -27,26 +27,27 @@ export class AddTransactionComponent {
     return this.amount > 0 && this.description.trim().length > 0;
   }
 
-  save() {
-    if (!this.isValid()) return;
-
-    this.repo.add({
-      type: this.type(),
-      amount: this.amount,
-      description: this.description
-    });
-
-    this.amount = 0;
-    this.description = '';
-    this.loadTransactions();
+  async save() {
+      if (!this.isValid()) return;
+      
+      await this.repo.add({
+          type: this.type(),
+          amount: this.amount,
+          description: this.description
+      });
+      
+      this.amount = 0;
+      this.description = '';
+      await this.loadTransactions();
   }
 
-  delete(id: string) {
-    this.repo.delete(id);
-    this.loadTransactions();
+  async delete(id: string) {
+    await this.repo.delete(id);
+    await this.loadTransactions();
   }
 
-  private loadTransactions() {
-    this.transactions.set(this.repo.getAll());
+  private async loadTransactions() {
+    const all = await this.repo.getAll();
+    this.transactions.set(all);
   }
 }
