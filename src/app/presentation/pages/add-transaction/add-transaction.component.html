@@ -29,13 +29,9 @@
       </button>
 
       <h3>Последние транзакции</h3>
-      <ul>
+      <div>
         @for (tx of transactions(); track tx.id) {
-          <li>
-            {{ tx.type === 'expense' ? '-' : '+' }}{{ tx.amount }} ₽ — 
-            {{ tx.description }} ({{ tx.createdAt | date:'short' }})
-            <button (click)="delete(tx.id)">✖</button>
-          </li>
+          <transaction-item [transaction]="tx" (deleteTransaction)="delete($event)"></transaction-item>
         }
-      </ul>
+      </div>
     </div>

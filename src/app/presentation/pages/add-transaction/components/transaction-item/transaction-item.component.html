@@ -1,0 +1,10 @@
+<div>
+    {{ transaction.description }}
+    <div>({{ transaction.createdAt | date: "dd.MM.yyyy HH:mm" }})</div>
+</div>
+<div>
+    <div>{{ transaction.type === 'expense' ? '-' : '+' }}{{ transaction.amount }} ₽</div>
+    <button (click)="delete()">✖</button>
+</div>
+
+

@@ -2,14 +2,14 @@ import { CommonModule } from "@angular/common";
 import { Component, Inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Transaction, TransactionType } from "../../../domain/entities/transaction";
-import { TransactionIndexedDBRepository } from "../../../infrastructure/repositories/transaction-indexeddb.repository";
 import { ITransactionRepository } from "../../../domain/repositories/transaction.repository.interface";
 import { TRANSACTION_REPOSITORY_TOKEN } from "../../../domain/repositories/transaction.repository.token";
+import { TransactionItemComponent } from "./components/transaction-item/transaction-item.component";
 
 @Component({
   templateUrl: './add-transaction.component.html',
   styleUrl: './add-transaction.component.scss',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TransactionItemComponent],
 })
 export class AddTransactionComponent {
   type = signal<TransactionType>('expense');
