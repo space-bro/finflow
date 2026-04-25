@@ -3,6 +3,8 @@ import { Component, Inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Transaction, TransactionType } from "../../../domain/entities/transaction";
 import { TransactionIndexedDBRepository } from "../../../infrastructure/repositories/transaction-indexeddb.repository";
+import { ITransactionRepository } from "../../../domain/repositories/transaction.repository.interface";
+import { TRANSACTION_REPOSITORY_TOKEN } from "../../../domain/repositories/transaction.repository.token";
 
 @Component({
   templateUrl: './add-transaction.component.html',
@@ -15,7 +17,7 @@ export class AddTransactionComponent {
   description = '';
   transactions = signal<Transaction[]>([]);
 
-  constructor(private repo: TransactionIndexedDBRepository){
+  constructor(@Inject(TRANSACTION_REPOSITORY_TOKEN) private repo: ITransactionRepository){
     this.loadTransactions();
   }
 
