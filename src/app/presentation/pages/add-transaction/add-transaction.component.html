@@ -15,6 +15,16 @@
         </button>
       </div>
 
+      <div>
+        @for (category of categories(); track category.id) {
+          <button 
+            [class.active]="category.isDefault" 
+            (click)="setCategory(category.id)">
+            {{ category.name }}
+          </button>
+        }
+      </div>
+
       <input 
         type="number" 
         [(ngModel)]="amount" 

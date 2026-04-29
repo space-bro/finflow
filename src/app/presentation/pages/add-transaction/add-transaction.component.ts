@@ -5,6 +5,8 @@ import { Transaction, TransactionType } from "../../../domain/entities/transacti
 import { ITransactionRepository } from "../../../domain/repositories/transaction.repository.interface";
 import { TRANSACTION_REPOSITORY_TOKEN } from "../../../domain/repositories/transaction.repository.token";
 import { TransactionItemComponent } from "./components/transaction-item/transaction-item.component";
+import { Category } from "../../../domain/entities/category";
+import { CategoryRepository } from "../../../infrastructure/repositories/category.repository";
 
 @Component({
   templateUrl: './add-transaction.component.html',
@@ -12,17 +14,24 @@ import { TransactionItemComponent } from "./components/transaction-item/transact
   imports: [CommonModule, FormsModule, TransactionItemComponent],
 })
 export class AddTransactionComponent {
-  type = signal<TransactionType>('expense');
+  type = signal<TransactionType>("expense");
+  category = signal<string>("");
   amount = 0;
-  description = '';
+  description = "";
   transactions = signal<Transaction[]>([]);
+  categories = signal<Category[]>([]);
 
-  constructor(@Inject(TRANSACTION_REPOSITORY_TOKEN) private repo: ITransactionRepository){
+  constructor(@Inject(TRANSACTION_REPOSITORY_TOKEN) private repo: ITransactionRepository, private categoryRepo: CategoryRepository) {
+    this.loadCategories();
     this.loadTransactions();
   }
 
   setType(t: TransactionType) {
     this.type.set(t);
+  }
+
+  setCategory(c: string) {
+    this.category.set(c);
   }
 
   isValid(): boolean {
@@ -51,5 +60,11 @@ export class AddTransactionComponent {
   private async loadTransactions() {
     const all = await this.repo.getAll();
     this.transactions.set(all);
+  }
+
+  private async loadCategories() {
+    this.categoryRepo.initCategories();
+    const all = await this.categoryRepo.getAll();
+    this.categories.set(all);
   }
 }
