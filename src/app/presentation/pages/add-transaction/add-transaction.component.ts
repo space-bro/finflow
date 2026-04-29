@@ -44,7 +44,8 @@ export class AddTransactionComponent {
       await this.repo.add({
           type: this.type(),
           amount: this.amount,
-          description: this.description
+          description: this.description,
+          categoryId: this.category() || null
       });
       
       this.amount = 0;

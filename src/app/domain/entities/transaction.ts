@@ -9,6 +9,7 @@ export interface Transaction {
   amount: number;
   type: TransactionType;
   description: string;
+  categoryId: string | null;
   readonly createdAt: Date;
 }
 
@@ -19,12 +20,13 @@ export interface Transaction {
  * @param {string} description - The description of the transaction.
  * @returns {Transaction} - A new transaction object.
  */
-export function createTransaction(type: TransactionType, amount: number, description: string): Transaction {
+export function createTransaction(type: TransactionType, amount: number, description: string, categoryId: string | null): Transaction {
   return {
     id: crypto.randomUUID(),
     amount: Math.abs(amount),
     type: type,
     description: description,
+    categoryId: categoryId,
     createdAt: new Date()
   }
 }

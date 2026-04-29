@@ -13,7 +13,7 @@ export class TransactionIndexedDBRepository implements ITransactionRepository {
         }
 
         return new Promise((resolve, reject) => {
-            const request = indexedDB.open("FinFlowDB", 1);
+            const request = indexedDB.open("FinFlowDB", 2);
 
             request.onupgradeneeded = (event) => {
                 const db = (event.target as IDBOpenDBRequest).result;
@@ -62,7 +62,7 @@ export class TransactionIndexedDBRepository implements ITransactionRepository {
 
     async add(transaction: Omit<Transaction, 'id' | 'createdAt'>): Promise<Transaction> {
         const db = await this.openDB();
-        const newTransaction = createTransaction(transaction.type, transaction.amount, transaction.description);
+        const newTransaction = createTransaction(transaction.type, transaction.amount, transaction.description, transaction.categoryId);
 
         return new Promise((resolve, reject) => {
             const tx = db.transaction(["transactions"], "readwrite");
