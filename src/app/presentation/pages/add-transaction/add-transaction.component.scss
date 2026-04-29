@@ -4,25 +4,40 @@
      padding: 20px;
 }
 
+.add-transaction {
+    margin-bottom: 20px;
+    background-color: #f5ead1;
+    padding: 16px;
+    border-radius: 16px;
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}
+
 .type-buttons {
     display: flex;
-    gap: 10px;
     margin-bottom: 20px;
-}
 
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
+    button {
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
 
-.active {
-    opacity: 0.7;
+    .active {
+        opacity: 0.7;
+        background-color: #ffbb1d;
+    }
 }
 
 input {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
+}
+
+.transactions {
+    margin-top: 24px;
 }
