@@ -1,0 +1,14 @@
+.container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    h2 { margin-bottom: 20px; }
+    .chart-container { 
+      position: relative; 
+      height: 400px; 
+      margin-bottom: 20px; 
+    }
+    .summary { text-align: center; margin: 20px 0; }
+    .back-link { 
+      display: inline-block; 
+      margin-top: 20px; 
+      color: #1d7bff; 
+      text-decoration: none; 
+    }

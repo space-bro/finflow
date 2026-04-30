@@ -1,0 +1,13 @@
+    <div class="container">
+      <h2>Аналитика расходов</h2>
+      
+      <div class="chart-container">
+        <canvas #pieCanvas></canvas>
+      </div>
+      
+      <div class="summary">
+        <h3>Общая сумма расходов: {{ totalExpenses() }} ₽</h3>
+      </div>
+      
+      <a routerLink="/" class="back-link">← Назад к транзакциям</a>
+    </div>
