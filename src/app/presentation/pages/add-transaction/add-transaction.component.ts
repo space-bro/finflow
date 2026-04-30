@@ -7,12 +7,11 @@ import { TRANSACTION_REPOSITORY_TOKEN } from "../../../domain/repositories/trans
 import { TransactionItemComponent } from "./components/transaction-item/transaction-item.component";
 import { Category } from "../../../domain/entities/category";
 import { CategoryRepository } from "../../../infrastructure/repositories/category.repository";
-import { RouterModule } from "@angular/router";
 
 @Component({
   templateUrl: './add-transaction.component.html',
   styleUrl: './add-transaction.component.scss',
-  imports: [CommonModule, FormsModule, TransactionItemComponent, RouterModule],
+  imports: [CommonModule, FormsModule, TransactionItemComponent],
 })
 export class AddTransactionComponent {
   type = signal<TransactionType>("expense");

@@ -5,13 +5,12 @@ import { Category } from "../../../domain/entities/category";
 import { ITransactionRepository } from "../../../domain/repositories/transaction.repository.interface";
 import { CategoryRepository } from "../../../infrastructure/repositories/category.repository";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
 import { Transaction } from "../../../domain/entities/transaction";
 
 // Регистрируем нужные компоненты Chart.js
 Chart.register(PieController, ArcElement, Tooltip, Legend);
 @Component({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: "./analytics.component.html",
   styleUrl: "./analytics.component.scss",
 })
