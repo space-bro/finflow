@@ -15,13 +15,14 @@
         </button>
       </div>
 
-      <div>
+      <div class="categories">
         @for (category of categories(); track category.id) {
-          <button 
-            [class.active]="category.isDefault" 
-            (click)="setCategory(category.id)">
-            {{ category.name }}
-          </button>
+          <div class="category" [class.active]="isActiveCategory(category.id)" (click)="setCategory(category.id)">
+            <div class="icon" [style.backgroundColor]="category.color">
+              {{ category.icon || '📌' }}
+            </div>
+            <div class="name">{{ category.name }}</div>
+          </div>
         }
       </div>
 
@@ -44,7 +45,7 @@
       <h3>Последние транзакции</h3>
       <div class="transactions">
         @for (tx of transactions(); track tx.id) {
-          <transaction-item [transaction]="tx" (deleteTransaction)="delete($event)"></transaction-item>
+          <transaction-item [transaction]="tx" [categories]="categories()" (deleteTransaction)="delete($event)"></transaction-item>
         }
       </div>
     </div>

@@ -38,6 +38,10 @@ export class AddTransactionComponent {
     return this.amount > 0 && this.description.trim().length > 0;
   }
 
+  isActiveCategory(id: string): boolean {
+    return this.category() === id;
+  }
+
   async save() {
       if (!this.isValid()) return;
       

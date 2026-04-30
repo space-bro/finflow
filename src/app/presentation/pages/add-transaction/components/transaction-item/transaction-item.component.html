@@ -1,6 +1,11 @@
-<div>
-    {{ transaction.description }}
-    <div class="date">{{ transaction.createdAt | date: "dd.MM.yyyy HH:mm" }}</div>
+<div class="info">
+    <div class="category" [style.backgroundColor]="category()?.color || '#9E9E9E'">
+        {{ category()?.icon || '📌' }}
+    </div>
+    <div>
+        {{ transaction.description }}
+        <div class="date">{{ transaction.createdAt | date: "dd.MM.yyyy HH:mm" }}</div>
+    </div>
 </div>
 <div>
     <div>{{ transaction.type === 'expense' ? '-' : '+' }}{{ transaction.amount }} ₽</div>
