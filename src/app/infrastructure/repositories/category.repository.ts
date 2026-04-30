@@ -12,13 +12,12 @@ export class CategoryRepository {
         const existing = await this.getAll();
         
         const defaultCategories: Category[] = [
-            createCategory('Еда', '🍔', '#4CAF50', true),
-            createCategory('Транспорт', '🚗', '#2196F3', true),
-            createCategory('Дом', '🏠', '#FF9800', true),
-            createCategory('Здоровье', '💊', '#F44336', true),
-            createCategory('Развлечения', '🎬', '#9C27B0', true),
-            createCategory('Другое', '📌', '#9E9E9E', true),
-            createCategory('Доход', '💰', '#4CAF50', true),
+            createCategory("food", "Еда", "🍔", "#95f598", true),
+            createCategory("transport", "Транспорт", "🚗", "#89c8fc", true),
+            createCategory("home", 'Дом', '🏠', '#eabc76', true),
+            createCategory("health", 'Здоровье', '💊', '#eb938d', true),
+            createCategory("entertainment", 'Развлечения', '🎬', '#dd97ea', true),
+            createCategory("other", 'Другое', '📌', '#d3d3d3', true),
         ];
 
     for (const category of defaultCategories) {

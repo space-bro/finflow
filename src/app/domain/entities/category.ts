@@ -7,9 +7,9 @@ export interface Category {
     isDefault: boolean;
 }
 
-export function createCategory(name: string, icon: string, color: string, isDefault: boolean): Category {
+export function createCategory(id: string, name: string, icon: string, color: string, isDefault: boolean): Category {
     return {
-        id: crypto.randomUUID(),
+        id: id ||crypto.randomUUID(),
         name: name,
         icon: icon,
         color: color,
